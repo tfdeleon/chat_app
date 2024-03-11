@@ -9,7 +9,8 @@ interface pageProps {}
 const page = async ({}) =>{
 
     const session = await getServerSession(authOptions)
-    return <Button> hello </Button>
+    return<div>Tim is Da GOat</div>
+
 }
 
 export default page
