@@ -4,3 +4,4 @@ interface User {
     image: string
     id: string
 }
+
