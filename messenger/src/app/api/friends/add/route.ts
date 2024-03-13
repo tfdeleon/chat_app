@@ -6,18 +6,14 @@ import { db } from "@/lib/db"
 import { z } from "zod"
 
 export async function POST(req: Request){
+    const session = await getServerSession(authOptions)
     try{
         const body = await req.json()
         const{email: emailToAdd} = addFriendValidator.parse(body.email)
-        const idToAdd = (await fetchRedis(
-        'get',
-        `user:email:${emailToAdd}`
-        )) as string
+        const idToAdd = (await fetchRedis('get',`user:email:${emailToAdd}`)) as string
     if(!idToAdd){
         return new Response("Oh no! This person does not exist.", {status: 400} )
     }
-    
-    const session = await getServerSession(authOptions)
     if(idToAdd === session.user.id){
         return new Response("You cannot add yourself!", {status: 400} )
     }
@@ -27,8 +23,8 @@ export async function POST(req: Request){
     //Check if user is already added
 
     const isAlreadyAdded = (await fetchRedis(
-        'sismember', 
-        `user:${idToAdd}:incoming_friend_requests,`, 
+        'sismember',
+        `user:${idToAdd}:incoming_friend_requests,`,
         session.user.id)) as 0 | 1
 
     if(isAlreadyAdded){
@@ -36,8 +32,8 @@ export async function POST(req: Request){
     }
 
     const isAlreadyFriends = (await fetchRedis(
-        'sismember', 
-        `user:${idToAdd}:friends`, 
+        'sismember',
+        `user:${idToAdd}:friends`,
         idToAdd
         )) as 0 | 1
 
