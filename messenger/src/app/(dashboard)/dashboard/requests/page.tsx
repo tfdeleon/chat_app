@@ -18,7 +18,6 @@ const page = async () => {
   const incomingFriendRequests = await Promise.all(
     incomingSenderIds.map(async (senderId) => {
       const sender = (await fetchRedis('get', `user:${senderId}`)) as string
-      console.log("sender",sender)
       const senderParsed = JSON.parse(sender) as User
 
       return {
@@ -27,7 +26,9 @@ const page = async () => {
       }
     })
   )
-  console.log("THIS SUCKSS",incomingFriendRequests)
+  // console.log(incomingFriendRequests)
+  // console.log("this is you", session.user.id)
+
 
   return (
     <main className='pt-8'>
