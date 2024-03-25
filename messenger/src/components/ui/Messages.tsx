@@ -1,5 +1,7 @@
 'use client'
-import { FC, useRef, useState } from 'react'
+import { FC, useRef, useState, useEffect } from 'react'
+import { pusherClient } from '@/lib/pusher'
+import { toPusherKey } from '@/lib/utils'
 import { Message } from '@/lib/validations/message'
 import { cn } from '@/lib/utils'
 import { format } from 'date-fns-tz';
@@ -11,13 +13,34 @@ interface MessagesProps {
   sessionId: string
   sessionImg: string | null | undefined
   chatPartner: User
+  chatId: string
 }
 
 const Messages: FC<MessagesProps> = ({
   initialMessages,
-  sessionId, sessionImg, chatPartner
+  sessionId, sessionImg, chatPartner,chatId
 }) => {
   const [messages, setMessages] = useState<Message[]>(initialMessages)
+
+  useEffect(() => {
+    pusherClient.subscribe(
+      toPusherKey(`chat:${chatId}`)
+    )
+    console.log("listening to ", `user:${sessionId}:incoming_friend_requests`)
+
+    const messageHandler = (message: Message) => {
+      setMessages((prev) => [message, ...prev])
+    }
+
+    pusherClient.bind('incoming-message', messageHandler)
+
+    return () => {
+      pusherClient.unsubscribe(
+        toPusherKey(`chat:${chatId}`)
+      )
+      pusherClient.unbind('incoming-message', messageHandler)
+    }
+  }, [])
   const scrollDownRef = useRef<HTMLDivElement | null>(null)
   const formatTimestamp = (timestamp: number) => {
     return format(timestamp, 'HH:mm')
