@@ -1,8 +1,6 @@
 "use client"
-
-import { authOptions } from '@/lib/auth'
+import Image from 'next/image'
 import { chatHrefConstructor } from '@/lib/utils'
-import { getServerSession } from 'next-auth'
 import { usePathname, useRouter } from 'next/navigation'
 import { FC, useState, useEffect} from 'react'
 
@@ -11,7 +9,6 @@ interface SideBarChatListProps {
     sessionId: string
 }
 
-const session = getServerSession(authOptions)
 const SideBarChatList: FC<SideBarChatListProps> = ({ friends, sessionId }) => {
     const router = useRouter()
     const pathName = usePathname()
@@ -29,7 +26,10 @@ const SideBarChatList: FC<SideBarChatListProps> = ({ friends, sessionId }) => {
             return unseenMsg.senderId === friend.id
         }).length
         return (<li key={friend.id}>
-            <a href={`/dashboard/chat/${chatHrefConstructor(sessionId,friend.id)}`}></a>
+            <a className='text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold' href={`/dashboard/chat/${chatHrefConstructor(
+                sessionId,friend.id)}`}>{friend.name}{unseenMessagesCount > 0 ? (
+                <div className='bg-indigo-600 font-medium text-xs text-white w-4 h-4 rounded-full flex justify-center items-center'>{unseenMessagesCount}</div>
+                ):null}</a>
         </li>)
     })}
   </ul>
