@@ -10,6 +10,8 @@ import FriendRequestSidebarOptions from '@/components/ui/FriendRequestSidebarOpt
 import { fetchRedis } from '@/helpers/redis'
 import { getFriendsByUserId } from '@/helpers/get-friends-id'
 import SideBarChatList from '@/components/ui/SideBarChatList'
+import { ThemeProvider } from '@/components/theme-provider'
+import { ModeToggle } from '@/components/ui/DarkMode'
 
 interface LayoutProps {
   children: ReactNode
@@ -86,7 +88,7 @@ const Layout = async ({ children }: LayoutProps) => {
                 </ul>
               </li>
 
-              <li className='-mx-6 mt-auto flex items-center'>
+              <li className='-mx-10 mt-auto flex items-center'>
                 <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900'>
                   <div className='relative h-8 w-8 bg-gray-50'>
                     <Image
@@ -105,6 +107,10 @@ const Layout = async ({ children }: LayoutProps) => {
                       {session.user.email}
                     </span>
                   </div>
+
+                  <div>
+                    {/* <ModeToggle /> */}
+                  </div>
                 </div>
 
                 <SignOutButton className='h-full aspect-square' />
@@ -112,7 +118,7 @@ const Layout = async ({ children }: LayoutProps) => {
             </ul>
           </nav>
         </div>
-        <aside className='max-h-screen container py-16 md:py-12 w-full '>{children} </aside>
+        <aside className='max-h-screen container py-14 md:py-10 w-full '><ThemeProvider attribute='class' defaultTheme='system'>{children} </ThemeProvider></aside>
       </div>
     );
   }
