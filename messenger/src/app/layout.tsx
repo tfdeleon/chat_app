@@ -1,6 +1,7 @@
 import './globals.css'
-import Providers from '@/components/Providers'
 import { ThemeProvider } from '@/components/theme-provider'
+import { ModeToggle } from '@/components/ui/DarkMode'
+
 
 export const metadata = {
   title: 'Msg.',
@@ -18,9 +19,10 @@ export default function RootLayout({
     <body>
       <ThemeProvider
         attribute="class"
-        defaultTheme="light"
+        defaultTheme="dark"
       >
         {children}
+
       </ThemeProvider>
     </body>
   </html>

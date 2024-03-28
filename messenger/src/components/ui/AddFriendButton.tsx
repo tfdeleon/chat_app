@@ -2,7 +2,7 @@
 import axios, { AxiosError } from 'axios'
 import { addFriendValidator } from '@/lib/validations/add-friend'
 import { FC, useState } from 'react'
-import Button from './Button'
+import Button from './Button1'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -48,7 +48,7 @@ const AddFriendButton: FC<AddFriendButtonProps> = ({}) => {
     }
   return (
   <form onSubmit={handleSubmit(onSubmit)}className='max-w-sm'>
-    <label htmlFor='email' className='block text-sm font-medium leading-6 text-gray-900'>
+    <label htmlFor='email' className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'>
         Add Friend by E-mail
     </label>
 
@@ -56,10 +56,10 @@ const AddFriendButton: FC<AddFriendButtonProps> = ({}) => {
         <input
         {...register('email')}
         type="text"
-        className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet 600 sm:text-sm sm:leading-6'
+        className='block w-full rounded-md  text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet 600 sm:text-sm sm:leading-6 dark:bg-black  dark:placeholder:text-violet-600'
         placeholder='youremail@you.com'
         />
-        <Button>Add</Button>
+        <Button  className='dark:bg-violet-600 dark:text-black'>Add</Button>
         </div>
         <p className='mt-1 text-sm text-red-600'>{errors.email?.message}</p>
         {showSuccessState ? (
