@@ -11,7 +11,7 @@ import { fetchRedis } from '@/helpers/redis'
 import { getFriendsByUserId } from '@/helpers/get-friends-id'
 import SideBarChatList from '@/components/ui/SideBarChatList'
 import { ThemeProvider } from '@/components/theme-provider'
-import { ModeToggle } from '@/components/ui/DarkMode'
+
 
 interface LayoutProps {
   children: ReactNode
@@ -45,8 +45,9 @@ const Layout = async ({ children }: LayoutProps) => {
     return (
       <div className='w-full flex h-screen'>
         <div className='flex h-full w-full max-w-xs grow flex-col gap-y-5 overflow-y-auto overflow-x-hidden border-r border-gray-200 bg-white px-6'>
-          <Link href='/dashboard' className='flex h-16 shrink-0 items-center'>
-            <Icons.Logo className="h-8 w-auto text-indigo-600" />
+          <Link href='/dashboard' className='flex h-16 shrink-0 items-center text-violet-600'>
+            <Icons.Logo className="h-8 w-auto stroke-violet-600 " />
+            <h1 className='text-2xl font-semibold text-black'>Msg.</h1>
           </Link>
 
           {friends.length > 0 ? (<div className='text-xs font-semibold leading-6 text-gray-400'> Chats</div>) : null}
@@ -67,9 +68,9 @@ const Layout = async ({ children }: LayoutProps) => {
                       <li key={option.id}>
                         <Link
                           href={option.href}
-                          className='text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                          className='text-gray-700 hover:text-violet-600 hover:bg-gray-50 group flex gap-3 rounded-md p-2 text-sm leading-6 font-semibold'
                         >
-                          <span className='text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'>
+                          <span className='text-gray-400 border-gray-200 group-hover:border-violet-600 group-hover:text-violet-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'>
                             <Icon className='h-4 w-4' />
                           </span>
 
@@ -91,6 +92,7 @@ const Layout = async ({ children }: LayoutProps) => {
               <li className='-mx-10 mt-auto flex items-center'>
                 <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900'>
                   <div className='relative h-8 w-8 bg-gray-50'>
+                  <Link href={`dashboard/user/${session.user.id}`}>
                     <Image
                       fill
                       referrerPolicy='no-referrer'
@@ -98,8 +100,9 @@ const Layout = async ({ children }: LayoutProps) => {
                       src={session.user.image || ''}
                       alt='Your profile picture'
                     />
-                  </div>
+                  </Link>
 
+                  </div>
                   <span className='sr-only'>Your profile</span>
                   <div className='flex flex-col'>
                     <span aria-hidden='true'>{session.user.name}</span>
@@ -107,6 +110,7 @@ const Layout = async ({ children }: LayoutProps) => {
                       {session.user.email}
                     </span>
                   </div>
+
 
                   <div>
                     {/* <ModeToggle /> */}
