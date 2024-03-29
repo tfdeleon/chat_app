@@ -13,6 +13,7 @@ const SignOutButton: FC<SignOutButtonProps> = ({ ...props }) => {
   return (
     <Button
       {...props}
+      className="dark:text-violet-600 dark:hover:bg-gray-900"
       variant='ghost'
       onClick={async () => {
         setIsSigningOut(true)

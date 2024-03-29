@@ -56,7 +56,7 @@ const AddFriendButton: FC<AddFriendButtonProps> = ({}) => {
         <input
         {...register('email')}
         type="text"
-        className='block w-full rounded-md  text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet 600 sm:text-sm sm:leading-6 dark:bg-black  dark:placeholder:text-violet-600'
+        className='block w-full rounded-md  text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet 600 sm:text-sm sm:leading-6 dark:bg-black  dark:placeholder:text-violet-600 dark:text-white'
         placeholder='youremail@you.com'
         />
         <Button  className='dark:bg-violet-600 dark:text-black'>Add</Button>
