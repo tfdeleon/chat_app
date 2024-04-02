@@ -4,6 +4,7 @@ import { pusherClient } from '@/lib/pusher'
 import { toPusherKey } from '@/lib/utils'
 import axios from 'axios'
 import { Check, UserPlus, X } from 'lucide-react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { FC, useEffect, useState } from 'react'
 
@@ -72,7 +73,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
       ) : (
         friendRequests.map((request) => (
           <div key={request.senderId} className='flex gap-4 items-center'>
-            <UserPlus className='text-black' />
+            <UserPlus className='text-black dark:text-violet-600' />
             <p className='font-medium text-lg'>{request.senderEmail}</p>
             <button
               onClick={() => acceptFriend(request.senderId)}

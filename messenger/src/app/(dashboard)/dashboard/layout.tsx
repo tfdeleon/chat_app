@@ -29,7 +29,7 @@ const sidebarOptions: SidebarOption[] = [
   {
     id: 1,
     name: 'Friend List',
-    href: '/dashboard/friends',
+    href: '/dashboard',
     Icon: "Contact"
   },
   {
@@ -81,7 +81,7 @@ const Layout = async ({ children }: LayoutProps) => {
                           href={option.href}
                           className='text-gray-700 hover:text-violet-600 hover:bg-gray-50 dark:hover:bg-gray-900 group flex gap-3 rounded-md p-2 text-sm leading-6 font-semibold dark:hover: bg-none '
                         >
-                          <span className='text-gray-400 border-gray-200 group-hover:border-violet-600 group-hover:text-violet-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'>
+                          <span className='text-gray-400 border-gray-200 dark:border-gray-900 group-hover:border-violet-600 group-hover:text-violet-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white dark:bg-gray-800 '>
                             <Icon className='h-4 w-4' />
                           </span>
 

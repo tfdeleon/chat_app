@@ -38,7 +38,7 @@ const FriendRequestSidebarOptions: FC<FriendRequestSidebarOptionsProps> = ({ ses
   return <Link
   href='/dashboard/requests'
   className='text-gray-700 hover:text-violet-600 hover:bg-gray-50 dark:hover:bg-gray-900 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
-  <div className='text-gray-400 border-gray-200 group-hover:border-violet-600 group-hover:text-violet-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'>
+  <div className='text-gray-400 border-gray-200 dark:border-gray-900 group-hover:border-violet-600 group-hover:text-violet-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white dark:bg-gray-800'>
     <User className='h-4 w-4' />
   </div>
   <p className='truncate dark:text-violet-600'>Friend requests</p>
